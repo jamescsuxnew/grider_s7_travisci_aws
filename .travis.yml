@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run -e CI=true grider_s7_travisci_aws npm run test
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "grider_s7_travisci_aws"
+  env: "GriderS7TravisciAws-env-1"
+  bucket_name: "elasticbeanstalk-us-east-1-717509116558"
+  bucket_path: "grider_s7_travisci_aws"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
