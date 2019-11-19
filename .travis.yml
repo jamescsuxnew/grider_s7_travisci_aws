@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t grider_s7_travisci_aws -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true USERNAME/docker-react npm run test
